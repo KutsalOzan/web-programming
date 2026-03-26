@@ -33,7 +33,7 @@ p {
 
 .card {
     background-color: #1c1c1e; 
-    border-radius: 16px;
+    border-radius: 1px;
     padding: 20px;
     margin-bottom: 20px;
 }
