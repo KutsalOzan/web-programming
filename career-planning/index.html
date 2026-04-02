@@ -1,37 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Kariyer Analizi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kariyer Analizi | Panel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Kariyer Planlama</h1>
+    <nav class="navbar">
+        <div class="nav-brand">KARİYER<span>OTO</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Ana Sayfa</a></li>
+            <li><a href="#" id="navUserName">Kullanıcı</a></li>
+            <li><button class="logout-btn" onclick="logoutUser()">Çıkış Yap</button></li>
+        </ul>
+    </nav>
 
-        <div class="card">
-            <h2>1. Kendinizi Tanitin</h2>
-            <p>Neler yapmayi seversin?</p>
-            <input type="text" id="userInput" placeholder="Hobilerini veya ilgilerini yaz...">
-            <button id="analyzeBtn" class="primary-btn">Tikla</button>
-        </div>
-
-        <div class="card">
-            <h2>2. Kariyer Önerileri</h2>
-            <p>Yukaridaki kelimelere göre sana uygun meslekler:</p>
-            <div id="suggestionBox">
-                <span class="empty-text">Henüz analiz yapilmadi.</span>
+    <div class="container-fluid main-content">
+        
+        <div class="dashboard-grid">
+            
+            <div class="left-column">
+                <div class="card glass-card">
+                    <h2>1. Kendinizi Tanıtın</h2>
+                    <p>Neler yapmayı seversin? (Örn: kod, oyun, analiz, tasarım)</p>
+                    <input type="text" id="userInput" placeholder="Hobilerini veya ilgilerini yaz...">
+                    <button id="analyzeBtn" class="primary-btn">Yol Haritası Çıkar</button>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <h2>3. Seçtiğim Hedefler</h2>
-            <ul id="myCareerList">
-                </ul>
+            <div class="right-column">
+                <div class="card glass-card">
+                    <h2>2. Kariyer Önerileri</h2>
+                    <div id="suggestionBox">
+                        <span class="empty-text">Henüz analiz yapılmadı. Sol taraftan kelime girerek analizi başlatın.</span>
+                    </div>
+                </div>
+
+                <div class="card glass-card">
+                    <h2>3. Seçtiğim Hedefler</h2>
+                    <ul id="myCareerList">
+                        </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <script src="script.js"></script>
+    <script>
+        checkAuth();
+    </script>
 </body>
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hedef Detayı</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <button class="secondary-btn" onclick="goBack()" style="margin-bottom: 20px;">
+            ← Ana Sayfaya Dön
+        </button>
+
+        <div class="card detail-card">
+            <h1 id="detailTitle">Yükleniyor...</h1>
+            <p id="detailStatus" class="status-text">Durum: Yükleniyor...</p>
+            
+            <div class="divider"></div>
+
+            <h2>Hedef Notları</h2>
+            <p>Bu kariyer hedefi için kendine notlar bırakabilirsin:</p>
+            <textarea id="detailNotes" placeholder="Örn: Bu hafta Udemy'den kurs alacağım..."></textarea>
+            
+            <button class="primary-btn" onclick="saveNotes()">Notları Kaydet</button>
+            <p id="saveMessage" style="color: #34c759; margin-top:10px; font-size:14px; display:none;">✅ Başarıyla kaydedildi.</p>
+        </div>
+    </div>
+
+    <script>
+        const goBack = () => {
+            window.location.href = "index.html";
+        };
+
+        const activeId = Number(localStorage.getItem("activeGoalId"));
+        let allCareers = JSON.parse(localStorage.getItem("careerData")) || [];
+        
+        let currentGoal = allCareers.find(goal => goal.id === activeId);
+
+        if(currentGoal) {
+            document.getElementById("detailTitle").innerText = currentGoal.title;
+            document.getElementById("detailStatus").innerText = "Durum: " + currentGoal.status;
+            
+            if(currentGoal.notes) {
+                document.getElementById("detailNotes").value = currentGoal.notes;
+            }
+        } else {
+            document.getElementById("detailTitle").innerText = "Hedef Bulunamadı!";
+        }
+
+        const saveNotes = () => {
+            let noteText = document.getElementById("detailNotes").value;
+            currentGoal.notes = noteText;
+            
+            localStorage.setItem("careerData", JSON.stringify(allCareers));
+            
+            let msg = document.getElementById("saveMessage");
+            msg.style.display = "block";
+            setTimeout(() => { msg.style.display = "none"; }, 2000);
+        }
+    </script>
+</body>
+</html>
